@@ -1,8 +1,11 @@
 <template>
-  <div id="app">
+  <div id="global">
     <img src="./assets/logo.png">
     <h1>{{ msg }}</h1>
     <mt-button @click.native="startHacking">Let's do it</mt-button>
+
+    <router-view></router-view>
+
   </div>
 </template>
 
@@ -23,7 +26,7 @@ export default {
 </script>
 
 <style>
-#app {
+#global {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

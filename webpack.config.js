@@ -36,6 +36,9 @@ module.exports = {
         query: {
           name: '[name].[ext]?[hash]'
         }
+      },{
+        test: /\.([sa|sc|c]ss)$/,
+        loader: 'style!css!sass'
       }
     ]
   },
@@ -46,7 +49,16 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    noInfo: true
+    noInfo: true,
+    proxy: {
+      '/api/*': {
+          target: 'http://localhost',
+          secure: false,
+          // pathRewrite : {
+          //   "^/api" : ""
+          // }
+      }
+    }
   },
   devtool: '#eval-source-map'
 }
