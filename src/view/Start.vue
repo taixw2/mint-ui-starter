@@ -1,6 +1,6 @@
 <template>
 
-    <div>
+    <div class="start">
       开始
     </div>
 
@@ -72,7 +72,8 @@
   }
 </script>
 
-
 <style scoped style="scss">
-
+  .start{
+      padding-top: 30px;
+  }
 </style>

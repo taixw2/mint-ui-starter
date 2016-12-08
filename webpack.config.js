@@ -37,8 +37,8 @@ module.exports = {
           name: '[name].[ext]?[hash]'
         }
       },{
-        test: /\.([sa|sc|c]ss)$/,
-        loader: 'style!css!sass'
+        test: /\.([scss|sass])$/,
+        loader: 'style-loader!css-loader!sass-loader'
       }
     ]
   },

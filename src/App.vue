@@ -2,7 +2,6 @@
   <div id="global">
     <img src="./assets/logo.png">
     <h1>{{ msg }}</h1>
-    <mt-button @click.native="startHacking">Let's do it</mt-button>
 
     <router-view></router-view>
 
