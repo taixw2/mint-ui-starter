@@ -6,4 +6,4 @@ module.exports = [
       component : require("./view/Start.vue")
     }
 
-]
+];
