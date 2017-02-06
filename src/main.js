@@ -16,7 +16,7 @@ var router = new VueRouter({
     mode: 'hash',
     base: __dirname,
     routes,
-    scrollBehavior(to, from, savePosition) {
+    scrollBehavior(to, from, savePosition) {        
         return savePosition ? savePosition : {
             x: 0,
             y: 0
@@ -25,14 +25,19 @@ var router = new VueRouter({
 });
 
 
+Vue.http.options.root = "/api";
+
+Vue.http.interceptors.push((request,next)=>{
+    next(response=>{
+
+      return true;
+    });
+});
+
 const app = new Vue({
     el: "#app",
     router,
     http: {
-        root: '/api',
-        headers: {
-            // Authorization: 'Basic YXBpOnBhc3N3b3Jk'
-        },
         options : {
           emulateJSON  :  true
         }
