@@ -3,13 +3,14 @@ const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const _ = require('lodash')
 
 module.exports = {
   entry: {
     build: './src/main.js',
   },
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, './dist/'),
     publicPath: '/dist/',
     filename: 'js/[name].js?q=[hash]',
   },
@@ -76,7 +77,6 @@ module.exports = {
   //   },
   // },
   plugins: [
-    new HtmlWebpackPlugin(),
     new ExtractTextPlugin({
       allChunks: true,
       filename: 'styles.css?q=[hash]',
@@ -101,18 +101,30 @@ module.exports = {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
-  module.exports.plugins = (module.exports.plugins || []).concat([
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"',
-      },
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-      },
-    }),
-    new OptimizeCSSPlugin(),
-  ])
+  _.assign(module.exports, {
+    output: {
+      path: path.resolve(__dirname, './dist'),
+      publicPath: './',
+      filename: 'js/[name].js?q=[hash]',
+    },
+    devtool: '#source-map',
+    plugins: (module.exports.plugins || []).concat([
+      new HtmlWebpackPlugin({
+        filename: 'index.html',
+        template: 'temp.html',
+        inject: true,
+      }),
+      new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: '"production"',
+        },
+      }),
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false,
+        },
+      }),
+      new OptimizeCSSPlugin(),
+    ]),
+  })
 }

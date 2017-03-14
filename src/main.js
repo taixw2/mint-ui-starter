@@ -5,12 +5,12 @@ import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import App from './App.vue'
 import routes from './routes'
-
+import Store from './store'
 
 Vue.use(VueResource)
 Vue.use(MintUI)
 Vue.use(VueRouter)
-
+Vue.use(Store)
 
 const router = new VueRouter({
   mode: 'hash',
@@ -23,7 +23,6 @@ const router = new VueRouter({
     }
   },
 })
-
 
 Object.assign(Vue.http.options, {
   root: '/api',

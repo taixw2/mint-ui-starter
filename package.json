@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "autoprefixer": "^6.7.3",
+    "lodash": "^4.17.4",
     "mint-ui": "^2.2.1",
     "normalize.css": "^5.0.0",
     "vue": "^2.2.3",
